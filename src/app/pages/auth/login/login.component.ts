@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
   // Inyecciones
   private readonly _service = inject(AuthService);
   private readonly _spinner = inject(NgxSpinnerService);
-
+  private readonly _router = inject(Router);
 
   //FormControl
   frmCorreo = new FormControl();
@@ -48,7 +49,9 @@ export class LoginComponent {
         const { nRetorno, sRetorno } = response.data;
 
         if(nRetorno > 0 ) {
+          localStorage.setItem('nIdUsuario', nRetorno.toString());
 
+          this._router.navigate(['tarea'])
         }else {
           Swal.fire({
             icon: 'warning',

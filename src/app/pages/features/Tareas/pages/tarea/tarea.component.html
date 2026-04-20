@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="tarea-container">
+    <h2>Listado de Tareas</h2>
+
+    @for(item of lTareas; track item) {
+      <div class="list-tarea">
+        <h4>{{ item.sTitulo }}</h4>
+        <p>{{ item.sDescripcion }}</p>
+        <button>Editar Tarea</button>
+      </div>
+    }
+
+
+  </div>
+</div>
